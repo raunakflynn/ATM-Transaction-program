@@ -2,8 +2,8 @@
 
 // C Program for ATM Transaction //
 int main() {
-    int ATM_pin, choice, pass, count=0;
-    float amount_withdraw, amount=20000, amount_deposit;
+    int ATM_pin, choice, pass, count=0, withdraw, deposit;
+    float amount=20000;
     printf(".....WELCOME TO HDFC BANK.....\n");
     
     printf("Please set your ATM pin:\n");
@@ -40,11 +40,18 @@ int main() {
             printf("Please Enter Your ATM Pin\n");
             scanf("%d",&pass);
         if(pass==ATM_pin){
-            printf("Please Enter The Amount You Want To Withdraw\n");
-            scanf("%f",&amount_withdraw);
-        amount = amount-amount_withdraw;
-            printf("Please Collect Your Cash From The Machine\n");
+            do{
+                printf("Withdrawal Amount Should be Multiple of 100\n");
+                printf("Please Enter The Amount You Want To Withdraw\n");
+                scanf("%d",&withdraw);
+            }while(withdraw%100!=0);
+        amount = amount-withdraw;
+        if(amount<20000){
+            printf("Please Collect Your Cash From The Machine...\n");
             printf("Your ATM Balance is %.2f\n",amount);
+        }else{
+            printf("Insufficient Balance!\n");
+        }
             break;
             }else{
             printf("Incorrect PIN, Please try again\n");
@@ -60,10 +67,13 @@ int main() {
             printf("Please Enter Your ATM Pin\n");
             scanf("%d",&pass);
         if(pass==ATM_pin){
-            printf("Please Enter The Amount You Want To Deposit\n");
-            scanf("%f",&amount_deposit);
-        amount = amount+amount_deposit;
-            printf("Please Deposit Your Cash in The Machine\n");
+            do{
+                printf("Deposit Amount Should be Multiple of 100\n");
+                printf("Please Enter The Amount You Want To Deposit\n");
+                scanf("%d",&deposit);
+            }while(deposit%100!=0);
+        amount = amount+deposit;
+            printf("Please Deposit Your Cash in The Machine...\n");
             printf("Your ATM Balance is %.2f\n",amount);
             break;
             }else{
